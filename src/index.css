@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+navbar-brand{
+  background-color: #fff;
+}
+#login{
+  margin-right: 50px;
+}
+#register{
+  margin-right: 50px;
+}
