@@ -8,10 +8,19 @@ export default class Body extends Component {
             <div className="body">
                 <p id="features">Features</p>
                 <h1>Why we are best?</h1>
-                <div className="col-sm-10">
-               
-                     </div>
+                <div class="row">
+                   <div class="col">
+                1 of 3
                </div>
+                <div class="col">
+                 2 of 3
+                </div>
+              <div class="col">
+                3 of 3
+               </div>
+               </div>
+  </div>
+                   
         )
     }
 }
