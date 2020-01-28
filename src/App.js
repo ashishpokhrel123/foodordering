@@ -1,15 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+
 
 import './App.css';
 
-import './Components/navbar.css';
 
 
 
-import Navbar from './Components/Navbar';
-import Body from './Components/Body';
-import Landing from './Components/Landing';
+
+import Navbar from './Component/Layouts/Navbar';
+import Desc from  './Component/Layouts/Description';
+import Category from './Component/Category';
+import Poppular from './Component/Poppular';
+import Footer from './Component/Layouts/Foot';
+
+
+
 
 function App() {
   return (
@@ -17,8 +22,14 @@ function App() {
     <div className="App">
         
          <Navbar/>
-         <Landing />
-         <Body />
+
+         <Category />
+
+        <Poppular />
+
+       <Footer />
+      
+  
     </div>
 
   
