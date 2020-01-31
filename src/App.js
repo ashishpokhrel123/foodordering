@@ -12,6 +12,7 @@ import Desc from  './Component/Layouts/Description';
 import Category from './Component/Category';
 import Poppular from './Component/Poppular';
 import Footer from './Component/Layouts/Foot';
+import Restuarant from './Component/Restuarant';
 
 
 
@@ -26,6 +27,8 @@ function App() {
          <Category />
 
         <Poppular />
+
+        <Restuarant />
 
        <Footer />
       

@@ -1,6 +1,10 @@
 import React from 'react'
 
 import './navbar.css';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+
+
 
 export default function Navbar() {
     return (
@@ -33,6 +37,7 @@ export default function Navbar() {
  
   </form>
   </div>
+    
   
 </nav>
     )

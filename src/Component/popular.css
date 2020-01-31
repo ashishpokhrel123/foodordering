@@ -1,22 +1,20 @@
-#row{
-    margin: 10px;
+#product{
+    margin: 5px;
 }
-.popcat{
-    height: 200px;
-    width: 200px;
-}
-.popcat2{
-    height: 200px;
-    width: 200px;
-
-}
-.popcat3{
-    height: 200px;
-    width: 200px;
-}
-#cardimage{
-    width: 50px;
-    height: 50px;
+.card-product .image_wrap{
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+    position: relative;
+    height: 220px;
     margin: 20px;
-
+    text-align: center;
+}
+.card-product .image_wrap img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+.card-product .info-wrap {
+    overflow: hidden;
+    padding: 15px;
 }
