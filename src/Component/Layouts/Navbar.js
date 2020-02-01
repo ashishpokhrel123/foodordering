@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { Component,useState } from 'react'
+
 
 import './navbar.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+import {loginmodal} from '../User/LoginModal';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
 
+export default class Navbar extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
 
+      modal: false
+      
 
-export default function Navbar() {
+       
+    }
+    this.toggle = this.toggle.bind(this);
+   
+  }
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+  
+  
+  render() {
+    
+
     return (
-        <nav class="navbar navbar-expand-lg navbar-light">
+      <div>
+          <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="#">Food</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,9 +55,49 @@ export default function Navbar() {
     </ul>
     
     <form class="form-inline my-2 my-lg-0">
+
+    
   
-    <button type="button" class="btn btn-light" id="login">Login</button>
-    <button type="button" class="btn btn-success" id="signup">Signup</button>
+    
+   
+    <Button color="success" onClick={this.toggle}>Login</Button>{' '}
+    <Modal isOpen={this.state.modal}>
+        
+          <ModalBody>
+          
+          <form>
+                <legend><h3>Sign In</h3></legend>
+
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email" className="form-control" placeholder="Enter email" />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" />
+                </div>
+
+                <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+                </div>
+
+                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <p className="forgot-password text-right">
+                    Forgot <a href="#">password?</a>
+                </p>
+            </form>
+          </ModalBody>
+          <ModalFooter>
+          <p className="forgot-password ">
+                    Not registered yet? <a href="#">sign up?</a>
+                </p>
+          </ModalFooter>
+          
+        </Modal>
     
  
   </form>
@@ -40,5 +105,9 @@ export default function Navbar() {
     
   
 </nav>
+     
+      </div>
     )
+  }
 }
+
