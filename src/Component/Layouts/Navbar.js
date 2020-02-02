@@ -18,7 +18,10 @@ export default class Navbar extends Component {
       modal: false,
       username: '',
       password: '',
-      isLoggedIn: false
+      isLoggedIn: false,
+      admin: false
+      
+     
       
 
        
@@ -49,9 +52,12 @@ export default class Navbar extends Component {
                 this.setState({
                     username: '',
                     password: '',
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                   
+                 
+                    
                 })
-              
+            
 
 
     }).catch((err) => console.log(err.response))
@@ -62,11 +68,19 @@ export default class Navbar extends Component {
   
   
   render() {
+
+   if(this.state.admin){
+     return <Redirect to='/admin' /> 
+   }
+  
     if(this.state.isLoggedIn){
+     
       return <Redirect to='/home'/>
     }
     
-
+   
+   
+    
     return (
       <div>
           <nav class="navbar navbar-expand-lg navbar-light">
