@@ -5,6 +5,8 @@ import './navbar.css';
 
 import {loginmodal} from '../User/LoginModal';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 
 export default class Navbar extends Component {
@@ -13,7 +15,10 @@ export default class Navbar extends Component {
   
     this.state = {
 
-      modal: false
+      modal: false,
+      username: '',
+      password: '',
+      isLoggedIn: false
       
 
        
@@ -26,9 +31,40 @@ export default class Navbar extends Component {
       modal: !this.state.modal
     });
   }
+
+  handlechange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+
+    })
+  }
+
+  handleLogin = (e) =>{
+    e.preventDefault();
+    Axios.post('http://localhost:3002/users/login',this.state)
+      .then((response)=>{
+        console.log(response);
+        localStorage.setItem('token', response.data.token)
+
+                this.setState({
+                    username: '',
+                    password: '',
+                    isLoggedIn: true
+                })
+              
+
+
+    }).catch((err) => console.log(err.response))
+
+
+    }
+  
   
   
   render() {
+    if(this.state.isLoggedIn){
+      return <Redirect to='/home'/>
+    }
     
 
     return (
@@ -70,12 +106,14 @@ export default class Navbar extends Component {
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="text" name="username" className="form-control" placeholder="Username"
+                    value={this.state.username} onChange={this.handlechange} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" name="password" className="form-control" placeholder="Enter password"
+                    value={this.state.password} onChange={this.handlechange}  />
                 </div>
 
                 <div className="form-group">
@@ -85,7 +123,7 @@ export default class Navbar extends Component {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" className="btn btn-primary btn-block" onClick={this.handleLogin}>Submit</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
