@@ -19,13 +19,9 @@ export default class Navbar extends Component {
       username: '',
       password: '',
       isLoggedIn: false,
-      admin: false
-      
-     
-      
-
-       
+      admin:false
     }
+
     this.toggle = this.toggle.bind(this);
    
   }
@@ -43,16 +39,28 @@ export default class Navbar extends Component {
   }
 
   handleLogin = (e) =>{
+
+ 
     e.preventDefault();
     Axios.post('http://localhost:3002/users/login',this.state)
       .then((response)=>{
         console.log(response);
         localStorage.setItem('token', response.data.token)
+      
+         Axios.get('http://localhost:3002/users/me',this.state,this.config)
+         
+        
+      
+         .then((response)=>{
+           console.log(response);
+         }
+         )
 
                 this.setState({
                     username: '',
                     password: '',
                     isLoggedIn: true,
+                    admin:true
                    
                  
                     
@@ -69,9 +77,7 @@ export default class Navbar extends Component {
   
   render() {
 
-   if(this.state.admin){
-     return <Redirect to='/admin' /> 
-   }
+   
   
     if(this.state.isLoggedIn){
      

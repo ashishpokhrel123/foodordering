@@ -16,7 +16,7 @@ export default function LandingPage() {
 
            <Poppular />
 
-         <Restuarant/>
+            <Restuarant/>
 
            <Footer/>
         </div>
