@@ -22,6 +22,7 @@ import Home from './Component/Home';
 import AdminDashboard from './Component/Layouts/Admin/AdminDashboard';
 import AddFood from './Component/AddFood';
 import AddRestuarant from './Component/AddRestuarant';
+import Register from './Component/Layouts/Register';
 
 
 
@@ -35,10 +36,11 @@ function App() {
        
 
        <Router>
-         <Route exact path='/' component={LandingPage} />
+         <Route exact path='/' component={LandingPage} /> 
+         <Route path='/register' component={Register} />
          <PrivateRoute path='/home' component={Home} />
          <PrivateRoute path ='/admin' component={AdminDashboard} />
-         <Route path='/addfood' component={AddFood}/>
+         <PrivateRoute path='/addfood' component={AddFood}/>
          <PrivateRoute path='/addresturant' component={AddRestuarant}/>
 
         

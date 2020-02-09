@@ -10,11 +10,12 @@ export default class  extends Component {
         this.state = {
              foodname: '',
              foodprice: '',
+             isInsert: false,
              config: {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             },
              //foodimage:'',
-             isInsert: false,
+           
              
              
              
@@ -39,14 +40,14 @@ export default class  extends Component {
         e.preventDefault();
         console.log(this.state)
 
-        Axios.post('http://localhost:3002/foods', this.state)
+        Axios.post('http://localhost:3002/foods', this.state.config)
         .then((response)=>{
             console.log(response.data);
-            localStorage.setItem('token', response.data.token)
+           
             this.setState({
-                foodname:'',
-                foodprice:'',
-                isInsert: true
+                foodname:response.foodname,
+                foodprice:response.foodprice,
+            
                 
 
             });
