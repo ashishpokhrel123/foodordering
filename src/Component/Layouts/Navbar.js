@@ -47,7 +47,7 @@ export default class Navbar extends Component {
         console.log(response);
         localStorage.setItem('token', response.data.token)
       
-         Axios.get('http://localhost:3002/users/me',this.state,this.config)
+         
          
         
       
@@ -118,6 +118,7 @@ export default class Navbar extends Component {
    
     <Button color="success" onClick={this.toggle}>Login</Button>{' '}
     <Modal isOpen={this.state.modal}>
+    <ModalHeader toggle={this.toggle}><legend>Login</legend></ModalHeader>
         
           <ModalBody>
           
@@ -151,7 +152,7 @@ export default class Navbar extends Component {
           </ModalBody>
           <ModalFooter>
           <p className="forgot-password ">
-                    Not registered yet? <a href="#">sign up?</a>
+                    Not registered yet? <a href="/register">sign up?</a>
                 </p>
           </ModalFooter>
           

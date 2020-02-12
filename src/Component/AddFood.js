@@ -1,101 +1,104 @@
 import React, { Component } from 'react'
-import { Container, Label, Form, Button, Input } from 'reactstrap'
-import Axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Button, Form, FormGroup, Label, Input, Container, FormText, CustomInput } from 'reactstrap'
+import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
-export default class  extends Component {
+
+export default class Register extends Component {
+
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             foodname: '',
-             foodprice: '',
-             isInsert: false,
-             config: {
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+
+            foodname: null,
+            price : null,
+            foodimage: null,
+            config: {
+                headers: { 'Authorization': `Bearer  ${localStorage.getItem('token')}` }
             },
-             //foodimage:'',
+            selectedFile: null,
+
+
+          
            
-             
-             
-             
-
-             
-
         }
-     
-      
-
-        
+    
     }
     
 
-    handlechnage = (e) =>{
+   handleFileSelect  = (e) =>{
+
         this.setState({
-            [e.target.name]: e.target.value
+            selectedFile: e.target.files[0]
+        })
+
+    }
+    uploadFile = (e) => {
+        e.preventDefault();
+        const data = new FormData()
+        data.append('imageFile', this.state.selectedFile)
+        axios.post('http://localhost:3002/upload', data, this.state.config)
+            .then((response) => {
+                this.setState({
+                    foodname: this.state.foodname,
+                    price:this.state.price,
+                    foodimage: response.data.filename
+
+                })
+            }).catch((err) => console.log(err.response))
+    }
+
+    handleChange = (e)  =>{
+        this.setState({
+             [e.target.name]: e.target.value 
         })
     }
-
-    addfood = (e) => {
-        e.preventDefault();
-        console.log(this.state)
-
-        Axios.post('http://localhost:3002/foods', this.state.config)
-        .then((response)=>{
-            console.log(response.data);
-           
-            this.setState({
-                foodname:response.foodname,
-                foodprice:response.foodprice,
-            
-                
-
-            });
-            
-        }).catch((err) => console.log(err));
-
-        }
-    
-    
-
-    
-    render() {
-        if(this.state.isInsert == true){
-            return <Redirect to='/addfood'/>
-        }
-        return (
-            <div>
-                <Container>
-
-                    <div  class="addfoodbox" className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-
-                      
-
-                        <div class="panel-heading">
-                <div className="panel-title">Add Food</div>
-
-               
-           
-   
-      <Form>
-          <Label>Food name</Label>
-          <Input type="text" name="foodname" value={this.state.foodname} onChange={this.handlechnage}/>
-          <Label>Price</Label>
-          <Input type="text" name="foodprice" value={this.state.foodprice} onChange={this.handlechnage}/>
-          <Label>Image</Label>
-          <Input type="file" name="foodimage"/>
-          <Label>   </Label>
-          <Button className="btn btn-success" onClick={this.addfood}>Add</Button>
   
-              
-      </Form>
-      </div>
-      </div>
+    addFood = (e) => {
+        e.preventDefault();
+        
+        axios.post('http://localhost:3002/foods', this.state,this.state.config)
+            .then((response) => console.log(response.data)).catch((err) => console.log(err.response))
+       
+    }
+
+
    
+
+        render() {
+        return (
+            <Container>
+                <h2>Add food</h2>
+                <form>
+                <Label for='foodname'>Food Name</Label>
+                <FormGroup>
+                                <Input type='text'
+                                    id="foodname"
+                                    name='foodname'
+                                    value={this.state.foodname}
+                                    onChange={this.handleChange}
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for='foodprice'>food price</Label>
+                                <Input type='text' id='foodprice'
+                                    name='price'
+                                    value={this.state.price}
+                                    onChange={ this.handleChange} />
+                            </FormGroup>
+                            <FormGroup>
+                                
+                                <Input type='file' name='foodimage' id='foodimg'
+                                    onChange={this.handleFileSelect}/>
+                                        <Button color='success' onClick={this.uploadFile}>Upload Picture</Button> 
+                                    
+                                 
+                            </FormGroup>
+                            <Button color='success' onClick={this.addFood} block>Add Food</Button>
               
-         
-                </Container>
-            </div>
+                </form>
+            </Container>
         )
     }
 }
