@@ -1,8 +1,8 @@
 import React from 'react'
-import  Navbar  from './Layouts/Navbar';
+import  Navbar  from '../Layouts/Navbar';
 import Category from './Category'
 import Poppular from './Poppular'
-import Footer from './Layouts/Foot'
+import Footer from '../Layouts/Foot'
 import Restuarant from './Restuarant'
 
 

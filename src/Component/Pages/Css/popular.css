@@ -6,7 +6,7 @@
     overflow: hidden;
     position: relative;
     height: 220px;
-    margin: 20px;
+    margin: 10px;
     text-align: center;
 }
 .card-product .image_wrap img {
@@ -16,5 +16,6 @@
 }
 .card-product .info-wrap {
     overflow: hidden;
-    padding: 15px;
+    padding: 8px;
+    text-align: center;
 }

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 import {Row,Col} from  'reactstrap';
 
-import  food from './assets/food.png';
-import wine from './assets/wine.png';
-import cake from './assets/cupcake.png';
-import fries from './assets/fries.png';
+import  food from '../assets/food.png';
+import wine from '../assets/wine.png';
+import cake from '../assets/cupcake.png';
+import fries from '../assets/fries.png';
 
 
 
-import   './category.css'
+import   './Css/category.css';
 
 export default class Category extends Component {
     render() {

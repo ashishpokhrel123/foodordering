@@ -3,7 +3,7 @@ import React, { Component,useState } from 'react'
 
 import './navbar.css';
 
-import {loginmodal} from '../User/LoginModal';
+
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
@@ -19,7 +19,9 @@ export default class Navbar extends Component {
       username: '',
       password: '',
       isLoggedIn: false,
-      admin:false
+      admin:false,
+      
+    
     }
 
     this.toggle = this.toggle.bind(this);
@@ -47,6 +49,7 @@ export default class Navbar extends Component {
         console.log(response);
         localStorage.setItem('token', response.data.token)
       
+      
          
          
         
@@ -60,7 +63,7 @@ export default class Navbar extends Component {
                     username: '',
                     password: '',
                     isLoggedIn: true,
-                    admin:true
+                 
                    
                  
                     

@@ -8,21 +8,21 @@ import './App.css';
 
 
 import Navbar from './Component/Layouts/Navbar';
-import UserNavbar from './Component/Layouts/UserNavbar';
+import UserNavbar from './Component/User/UserNavbar';
 import Desc from  './Component/Layouts/Description';
-import Category from './Component/Category';
-import Poppular from './Component/Poppular';
+import Category from './Component/Pages/Category';
+import Poppular from './Component/Pages/Poppular';
 import Footer from './Component/Layouts/Foot';
-import Restuarant from './Component/Restuarant';
+import Restuarant from './Component/Pages/Restuarant';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LandingPage from './Component/LandingPage';
+import LandingPage from './Component/Pages/LandingPage';
 import PrivateRoute from './Component/PrivateRoute';
-import Home from './Component/Home';
-import AdminDashboard from './Component/Layouts/Admin/AdminDashboard';
-import AddFood from './Component/AddFood';
-import AddRestuarant from './Component/AddRestuarant';
-import Register from './Component/Layouts/Register';
+import Home from './Component/Pages/Home';
+import AdminDashboard from './Component/Admin/AdminDashboard';
+import AddFood from './Component/Admin/AddFood';
+import AddRestuarant from './Component/Admin/AddRestuarant';
+import Register from './Component/User/Register';
 
 
 

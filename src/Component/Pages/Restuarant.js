@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
 
 import {Row} from 'reactstrap';
-import  food from './assets/food.png';
-import './popular.css';
+import  food from '../assets/food.png';
+import './Css/popular.css';
+import Axios from 'axios';
 
 export default class Restuarant extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       resturant:[],
+       resturantname: '',
+       returantimage: '',
+       config: {
+        headers: { 'Authorization': `Bearer  ${localStorage.getItem('token')}` }
+    },
+    }
+  }
+  componentDidMount() {
+    Axios.get('http://localhost:3002/resturants',this.config)
+    .then((response)=>{
+      const data = response.data;
+      this.setState({popular:  data});
+      console.log("data fecth");
+     
+    }).catch(error => console.log(error.response));
+  }
+  
+  
     render() {
         return (
             <div className="container">

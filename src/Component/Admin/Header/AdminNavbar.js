@@ -27,8 +27,8 @@ export default class AdminNavbar extends Component {
                 <div className="sidenavbar" id="sidenav">
                     
                     <a href="#">Home</a>
-                    <a href="#">Add Restuarant</a>
-                    <a href="#">Add Food</a>
+                    <a href='/addresturant'>Add Restuarant</a>
+                    <a href='/addfood'>Add Food</a>
                     <a href="#">Order</a>
                     <a href="#">Active User </a>
                 </div>

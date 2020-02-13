@@ -1,10 +1,10 @@
 import React, { Component,useState } from 'react'
 
 
-import './navbar.css';
-import './usernavbar.css';
+import '../Layouts/navbar.css';
+import '../User/usernavbar.css';
 
-import {loginmodal} from '../User/LoginModal';
+
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
 
