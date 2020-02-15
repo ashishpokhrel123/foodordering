@@ -48,6 +48,7 @@ export default class Navbar extends Component {
       .then((response)=>{
         console.log(response);
         localStorage.setItem('token', response.data.token)
+        Axios.get('http://localhost:3002/users/me')
       
       
          
@@ -82,7 +83,7 @@ export default class Navbar extends Component {
 
    
   
-    if(this.state.isLoggedIn){
+    if(this.state.isLoggedIn == true){
      
       return <Redirect to='/home'/>
     }
