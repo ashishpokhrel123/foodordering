@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+
+
 import { CardGroup,Card, Col, Row,CardBody, CardTitle, CardSubtitle,CardText,Button,CardImg, Container } from 'reactstrap'
 
 import  food from '../assets/food.png';
@@ -7,6 +10,7 @@ import fries from '../assets/fries.png';
 
 import './Css/popular.css';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class  extends Component {
 
@@ -16,6 +20,7 @@ export default class  extends Component {
     this.state = {
       resturant_name: '',
       res_image: '',
+      res_id:'',
        popular: [],
     }
   }
@@ -28,9 +33,17 @@ export default class  extends Component {
       console.log("data fecth");
      
     }).catch(error => console.log(error.response));
+  
+
+    
   }
 
  
+ 
+   
+  
+
+
 
  
   
@@ -48,10 +61,17 @@ export default class  extends Component {
                 <figure className="card card-product">
                  
                   <div className="image_wrap">
-                    <img src={`http://localhost:3002/uploads/${pop.res_image}`}/>
+                   <a href='/food'><img src={`http://localhost:3002/uploads/${pop.res_image}`}
+                     /></a>
+                    />
                   </div>
                   <figcaption class="info-wrap">
-              <h4 class="title">{pop.resturant_name}</h4>
+                  <h4 class="title">
+                  <Link to="/food" params={{ testvalue: "Ashish" }}>
+                    {pop.resturant_name}</Link>
+                  
+            
+              </h4>
                   </figcaption>
                 </figure>
               </div>
@@ -72,4 +92,4 @@ export default class  extends Component {
            
         )
     }
-}
+  }

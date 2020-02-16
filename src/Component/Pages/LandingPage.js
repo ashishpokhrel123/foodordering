@@ -4,6 +4,7 @@ import Category from './Category'
 import Poppular from './Poppular'
 import Footer from '../Layouts/Foot'
 import Restuarant from './Restuarant'
+import ResturantFood from './ResturantFood';
 
 
 
@@ -17,6 +18,8 @@ export default function LandingPage() {
            <Poppular />
 
             <Restuarant/>
+           
+           <ResturantFood />
 
            <Footer/>
         </div>

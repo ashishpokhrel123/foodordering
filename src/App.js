@@ -24,6 +24,8 @@ import AddFood from './Component/Admin/AddFood';
 import AddRestuarant from './Component/Admin/AddRestuarant';
 import Register from './Component/User/Register';
 
+import Food from './Component/Pages/Food';
+
 
 
 
@@ -42,6 +44,7 @@ function App() {
          <PrivateRoute path ='/admin' component={AdminDashboard} />
          <PrivateRoute path='/addfood' component={AddFood}/>
          <PrivateRoute path='/addresturant' component={AddRestuarant}/>
+          <PrivateRoute path='/food' component={Food}/>
 
         
        </Router>

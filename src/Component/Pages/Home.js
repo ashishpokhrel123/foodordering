@@ -5,6 +5,7 @@ import Category from './Category';
 import Poppular from './Poppular';
 import Restuarant from './Restuarant';
 import Footer from '../Layouts/Foot';
+import ResturantFood from './ResturantFood';
 
 export default class Home extends Component {
 
@@ -19,6 +20,7 @@ export default class Home extends Component {
                 <Category />
                 <Poppular />
                 <Restuarant />
+                <ResturantFood />
                 <Footer />
                 
             </div>

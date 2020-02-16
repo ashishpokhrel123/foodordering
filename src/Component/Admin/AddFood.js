@@ -98,7 +98,17 @@ export default class Register extends Component {
                             <Button color='success' onClick={this.addFood} block>Add Food</Button>
               
                 </form>
+
+              
+            
             </Container>
+
+
         )
+      
+    
+
+    
     }
+    
 }
