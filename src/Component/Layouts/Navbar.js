@@ -16,15 +16,17 @@ export default class Navbar extends Component {
     this.state = {
 
       modal: false,
+      modalbag: false,
       username: '',
       password: '',
       isLoggedIn: false,
-      admin:false,
+   
       
     
     }
 
     this.toggle = this.toggle.bind(this);
+
    
   }
   toggle() {
@@ -32,6 +34,7 @@ export default class Navbar extends Component {
       modal: !this.state.modal
     });
   }
+
 
   handlechange = (e) => {
     this.setState({
@@ -48,45 +51,28 @@ export default class Navbar extends Component {
       .then((response)=>{
         console.log(response);
         localStorage.setItem('token', response.data.token)
-        Axios.get('http://localhost:3002/users/me')
-      
-      
+        localStorage.setItem('token', response.data.token)
+        this.setState({
+          username: '',
+          password: '',
+          isLoggedIn: true,
          
-         
-        
-      
-         .then((response)=>{
-           console.log(response);
-         }
-         )
+       }) 
+ }).catch((err) => console.log(err.response))
 
-                this.setState({
-                    username: '',
-                    password: '',
-                    isLoggedIn: true,
-                 
-                   
-                 
-                    
-                })
+
+}
+     
             
-
-
-    }).catch((err) => console.log(err.response))
-
-
-    }
-  
   
   
   render() {
 
    
   
-    if(this.state.isLoggedIn == true){
-     
+   if(this.state.isLoggedIn){
       return <Redirect to='/home'/>
-    }
+  }
     
    
    
@@ -120,7 +106,8 @@ export default class Navbar extends Component {
   
     
    
-    <Button color="success" onClick={this.toggle}>Login</Button>{' '}
+    <Button color="success" onClick={this.toggle} id="login">Login</Button>{' '}
+ 
     <Modal isOpen={this.state.modal}>
     <ModalHeader toggle={this.toggle}><legend>Login</legend></ModalHeader>
         
@@ -128,6 +115,48 @@ export default class Navbar extends Component {
           
           <form>
                 <legend><h3>Sign In</h3></legend>
+
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="text" name="username" className="form-control" placeholder="Username"
+                    value={this.state.username} onChange={this.handlechange} />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" className="form-control" placeholder="Enter password"
+                    value={this.state.password} onChange={this.handlechange}  />
+                </div>
+
+                <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+                </div>
+
+                <button type="submit" className="btn btn-primary btn-block" onClick={this.handleLogin}>Submit</button>
+                <p className="forgot-password text-right">
+                    Forgot <a href="#">password?</a>
+                </p>
+            </form>
+          </ModalBody>
+          <ModalFooter>
+          <p className="forgot-password ">
+                    Not registered yet? <a href="/register">sign up?</a>
+                </p>
+          </ModalFooter>
+          
+        </Modal>
+
+
+        <Modal isOpen={this.state.modaladmin}>
+    <ModalHeader toggle={this.toggleadmin}><legend>Login</legend></ModalHeader>
+        
+          <ModalBody>
+          
+          <form>
+                <legend><h3>Admin Login</h3></legend>
 
                 <div className="form-group">
                     <label>Email address</label>

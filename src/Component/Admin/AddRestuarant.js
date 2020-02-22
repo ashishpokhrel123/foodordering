@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Label, Form, FormGroup,Select, Button, Input, Dropdown,DropdownItem, DropdownMenu,DropdownToggle,UncontrolledDropdown } from 'reactstrap'
 import Axios from 'axios'
+import ListResturant from '../Pages/ListResturant';
+import { Link, Redirect } from 'react-router-dom'
 
 export default class AddRestuarant extends Component {
   constructor(props) {
@@ -67,9 +69,9 @@ export default class AddRestuarant extends Component {
       });
     }
 
-    this.addResturant = (e) => {
+    this.addRest = (e) => {
       e.preventDefault();
-      Axios.post('http://localhost:3002/resturants',this.state)
+      Axios.post('http://localhost:3002/resturants',this.state,this.state.config)
       .then((response) => console.log(response.data)).catch((err) => console.log(err.response))
       
          
@@ -90,11 +92,14 @@ export default class AddRestuarant extends Component {
  
  
     render() {
+   
+    
      
      
-      const { foodId, handleFoodChange, displayfood, food} = this.props
+      const { foodId, handleFoodChange, displayfood, food} = this.props;
       
         return (
+        
            
           <Container>
           <h2>Add Resturant</h2>
@@ -143,13 +148,17 @@ export default class AddRestuarant extends Component {
 
                      
                       
-                      <Button color='success' onClick={this.addResturant} block>Add Resturant</Button>
+                      <Button color='success' onClick={this.addRest} block>Add Resturant</Button>
                       </FormGroup>
         
           </form>
+          <hr></hr>
+
+          <ListResturant />
       </Container>
                 
          
         )
+                        }
     }
-}
+

@@ -29,8 +29,7 @@ export default class AdminNavbar extends Component {
                     <a href="#">Home</a>
                     <a href='/addresturant'>Add Restuarant</a>
                     <a href='/addfood'>Add Food</a>
-                    <a href="#">Order</a>
-                    <a href="#">Active User </a>
+                    <a href="/viewuser">Active User </a>
                 </div>
                 <section className="mainpart">
                     <h2>Main Part</h2>

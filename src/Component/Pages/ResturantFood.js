@@ -35,6 +35,7 @@ export default class Resturantdetails extends Component {
         }).catch(error => console.log(error.response));
     }
     
+    
 
 
     render() {
@@ -56,7 +57,7 @@ export default class Resturantdetails extends Component {
                <figure className="card card-product">
                 
                  <div className="image_wrap">
-                 <img src={`http://localhost:3002/uploads/${pop.foodimage}`}
+                 <img src={`http://localhost:3002/uploads/${pop.foodimage}`} onClick={this.addcart}
             
                    />
                  </div>

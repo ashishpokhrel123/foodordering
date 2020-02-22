@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, FormText, CustomInput } from 'reactstrap'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import ListFoods from './ListFoods'
 
 
-export default class Register extends Component {
+export default class AddFood extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-
+            _id: null,
             foodname: null,
             price : null,
             foodimage: null,
@@ -67,6 +68,7 @@ export default class Register extends Component {
    
 
         render() {
+           
         return (
             <Container>
                 <h2>Add food</h2>
@@ -99,16 +101,17 @@ export default class Register extends Component {
               
                 </form>
 
-              
+                <hr></hr>
+
+              <ListFoods />
             
             </Container>
 
-
         )
+            }
       
     
 
     
     }
     
-}

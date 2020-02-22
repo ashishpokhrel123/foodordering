@@ -1,16 +1,21 @@
 import React, { Component,useState } from 'react'
 
 
+
 import '../Layouts/navbar.css';
 import '../User/usernavbar.css';
 
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Table,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Container } from 'reactstrap';
 
 
 import useravatar from '../assets/user.svg';
 import bagavatar from '../assets/shopping-bag.svg';
 import Axios from 'axios';
+import { withRouter } from 'react-router';
+
+import ViewCart from '../ViewCart';
+import Cart from './Cart';
 
 
 export default class Navbar extends React.Component {
@@ -23,13 +28,16 @@ export default class Navbar extends React.Component {
     this.state = {
 
       modal : false,
-      name: '',
-      address: '',
-      phone:'',
-      email:'',
-      username: '',
-      password: '',
-      user: null
+      modalbag: false,
+      user: [],
+       food: '',
+       totalprice: '',
+      quanity: '',
+      cart: [],
+      
+      config: {
+        headers: { 'Authorization': `Bearer  ${localStorage.getItem('token')}` }
+    },
 
     
       
@@ -38,6 +46,7 @@ export default class Navbar extends React.Component {
     }
 
     this.toggle = this.toggle.bind(this);
+    this.togglebag = this.togglebag.bind(this);
    
    
   }
@@ -45,22 +54,33 @@ export default class Navbar extends React.Component {
 
     this.setState({
       modal: !this.state.modal
+    
     })
 
   }
+  togglebag() {
+    this.setState({
+      modalbag: !this.state.modalbag
+    })
+  }
  
 
-  componentDidMount() {
-    Axios.get('http://localhost:3002/users/me',this.config)
-    .then((response)=>{
-      const data = response.data;
-      this.setState({
-        user:  { ...this.state.user}
-      
-      });
-      console.log("data fecth");
-     
-    }).catch(error => console.log(error.response));
+    componentDidMount() {
+    
+      Axios.get(`http://localhost:3002/cart/mycart`, this.state.config)
+          .then((response) => {
+            console.log(response.data);
+            const data = response.data
+              this.setState({
+                   cart : data
+               
+                 
+              })
+          }).catch((err) => console.log(err.response))
+          
+  
+ 
+
   }
   
   handlechange = (e) => {
@@ -68,6 +88,11 @@ export default class Navbar extends React.Component {
       [e.target.name]: e.target.value
 
     })
+  }
+  handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    this.props.history.push('/');
   }
   
   
@@ -102,10 +127,17 @@ export default class Navbar extends React.Component {
 
     
   
-    
+    <div class="dropdown">
+  <button class="dropbtn"><img src={useravatar}/></button>
+  <div class="dropdown-content">
+    <a  class = "btn btn-primary"href='/profile'>Profile Update</a>
+    <a  class = "btn btn-success" href='/order'>View order</a>
+    <a type="button"color="warning" onClick={this.handleLogout}>Logout</a>
+  </div>
+</div>
    
-    <img src={useravatar} id="user" onClick={this.toggle}/>
-    <img src={bagavatar}  id="bag"/>
+    
+    <img src={bagavatar}  id="bag" onClick={this.togglebag}/>
     
  
   </form>
@@ -115,59 +147,43 @@ export default class Navbar extends React.Component {
 </nav>
 
 
-//Modal
+
 
 <Modal isOpen={this.state.modal}>
-<ModalHeader toggle={this.toggle}><legend>Update</legend></ModalHeader>
+
     
-      <ModalBody>
       
-      <form>
-            <legend><h3>Update Profile</h3></legend>
-
-            <div className="form-group">
-                <label>Name</label>
-                <input type="text" name="name" className="form-control"
-                value={this.state.name} onChange={this.handlechange} />
-            </div>
-
-            <div className="form-group">
-                <label>address</label>
-                <input type="text" name="address" className="form-control"
-                value={this.state.address} onChange={this.handlechange}  />
-            </div>
-            <div className="form-group">
-                <label>Email</label>
-                <input type="text" name="email" className="form-control"
-                value={this.state.email} onChange={this.handlechange}  />
-            </div>
-            <div className="form-group">
-                <label>Username</label>
-                <input type="text" name="username" className="form-control"
-                value={this.state.username} onChange={this.handlechange}  />
-            </div>
-            <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" className="form-control" placeholder="Enter password"
-                    value={this.state.password} onChange={this.handlechange}  />
-                </div>
-
-
-            <button type="submit" className="btn btn-primary btn-block" onClick={this.handleupdate}>Update</button>
-            <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
-            </p>
-        </form>
-      </ModalBody>
-      <ModalFooter>
-      <p className="forgot-password ">
-                Not registered yet? <a href="/register">sign up?</a>
-            </p>
-      </ModalFooter>
+      
+      <div class="dropdown-content">
+        <a href='/profile'>Profile update</a><br/>
+        <a href='/order'>Profile update</a><br/>
+       
+        <a onClick={this.handleLogout}>Logout</a>
+  </div>
+    
       
     </Modal>
-     
-      </div>
+
+    <Modal isOpen={this.state.modalbag}>
+
+    <ModalHeader toggle={this.togglebag}><legend>My bag</legend></ModalHeader>
+      <ModalBody>
+      
+    
+           <Cart />
+    
+    </ModalBody>
+    <ModalFooter>
+      
+        <h2>Total amount: $0.0</h2>
+        </ModalFooter>    
+              
+           
+    
+    </Modal>
+
+</div>
+    
     )
   }
 }

@@ -20,7 +20,7 @@ export default class  extends Component {
     this.state = {
       resturant_name: '',
       res_image: '',
-      res_id:'',
+      _id:'',
        popular: [],
     }
   }
@@ -38,7 +38,12 @@ export default class  extends Component {
     
   }
 
- 
+ handleClick(_id,e){
+  this.props.history.push({
+    pathname: '/food',
+    data: _id // your data array of objects
+  })
+ }
  
    
   
@@ -61,13 +66,18 @@ export default class  extends Component {
                 <figure className="card card-product">
                  
                   <div className="image_wrap">
-                   <a href='/food'><img src={`http://localhost:3002/uploads/${pop.res_image}`}
-                     /></a>
-                    />
+                  <Link to={{ 
+              pathname: `/food/${pop._id}`, 
+              
+            }}><img src={`http://localhost:3002/uploads/${pop.res_image}`}
+                  
+                     /></Link>
+                    
                   </div>
                   <figcaption class="info-wrap">
                   <h4 class="title">
-                  <Link to="/food" params={{ testvalue: "Ashish" }}>
+                  <Link to={{ 
+              pathname: `/food/${pop._id}`,}}>
                     {pop.resturant_name}</Link>
                   
             

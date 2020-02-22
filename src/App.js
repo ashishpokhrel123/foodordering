@@ -3,18 +3,6 @@ import React from 'react';
 
 import './App.css';
 
-
-
-
-
-import Navbar from './Component/Layouts/Navbar';
-import UserNavbar from './Component/User/UserNavbar';
-import Desc from  './Component/Layouts/Description';
-import Category from './Component/Pages/Category';
-import Poppular from './Component/Pages/Poppular';
-import Footer from './Component/Layouts/Foot';
-import Restuarant from './Component/Pages/Restuarant';
-
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './Component/Pages/LandingPage';
 import PrivateRoute from './Component/PrivateRoute';
@@ -23,8 +11,12 @@ import AdminDashboard from './Component/Admin/AdminDashboard';
 import AddFood from './Component/Admin/AddFood';
 import AddRestuarant from './Component/Admin/AddRestuarant';
 import Register from './Component/User/Register';
-
-import Food from './Component/Pages/Food';
+import ActiveUser from './Component/Admin/Header/ActiveUser';
+import Order from './Component/Order';
+import RestFood from './Component/Pages/RestFood';
+import AdminPart from './Component/AdminPart';
+import ProfileUpdate from './Component/User/ProfileUpdate';
+import Cart from './Component/User/Cart';
 
 
 
@@ -40,11 +32,17 @@ function App() {
        <Router>
          <Route exact path='/' component={LandingPage} /> 
          <Route path='/register' component={Register} />
+         <Route path= '/adminlogin' component={AdminPart} />
          <PrivateRoute path='/home' component={Home} />
          <PrivateRoute path ='/admin' component={AdminDashboard} />
          <PrivateRoute path='/addfood' component={AddFood}/>
          <PrivateRoute path='/addresturant' component={AddRestuarant}/>
-          <PrivateRoute path='/food' component={Food}/>
+          <PrivateRoute path='/food' component={RestFood} />
+          <PrivateRoute path='/profile' component={ProfileUpdate}/>
+          <PrivateRoute path='/order' component={Cart} />
+          <PrivateRoute path='/viewuser' component={ActiveUser} />
+          <PrivateRoute path= '/vieworder' component={Order} />
+          
 
         
        </Router>
