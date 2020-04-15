@@ -1,7 +1,10 @@
 import React, { Component,useState } from 'react'
+import burg from '../assets/burger.jpg'
 
 
 import './navbar.css';
+import {FaSearch} from 'react-icons/fa';
+import {MdNotificationsActive} from 'react-icons/fa';
 
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
@@ -79,8 +82,8 @@ export default class Navbar extends Component {
     
     return (
       <div>
-          <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">Food</a>
+          <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+  <a class="navbar-brand" href="#"><img id="logo" src={burg}/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -90,7 +93,10 @@ export default class Navbar extends Component {
       <li class="nav-item active">
         
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="listmenu">
+       
+        <a class="" href=""><FaSearch /></a>
+     
      
       </li>
       <li class="nav-item dropdown">
@@ -101,12 +107,13 @@ export default class Navbar extends Component {
     </ul>
     
     <form class="form-inline my-2 my-lg-0">
-
+    <Button id="sign"  color="light"variant="success">SignIn</Button>{' '}
+    <Button id="siout"  color="dark"variant="success">SignUp</Button>{' '}
     
   
     
    
-    <Button color="success" onClick={this.toggle} id="login">Login</Button>{' '}
+   
  
     <Modal isOpen={this.state.modal}>
     <ModalHeader toggle={this.toggle}><legend>Login</legend></ModalHeader>
