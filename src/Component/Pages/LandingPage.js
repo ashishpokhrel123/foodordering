@@ -18,7 +18,7 @@ export default function LandingPage() {
              <Navbar />
              
              <Slider />
-             <Browseplace />
+           
 
             
 

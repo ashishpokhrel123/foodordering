@@ -31,7 +31,7 @@ const Topbar = (props) => {
         <NavbarBrand href="/"></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="mr-auto" navbar >
             <NavItem>
               <NavLink href="/components/">Contact</NavLink>
             </NavItem>

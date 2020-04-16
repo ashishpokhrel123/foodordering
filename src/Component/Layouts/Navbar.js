@@ -19,6 +19,7 @@ export default class Navbar extends Component {
     this.state = {
 
       modal: false,
+      modalres:false,
       modalbag: false,
       username: '',
       password: '',
@@ -29,6 +30,7 @@ export default class Navbar extends Component {
     }
 
     this.toggle = this.toggle.bind(this);
+    this.toggleres= this.toggleres.bind(this);
 
    
   }
@@ -36,6 +38,12 @@ export default class Navbar extends Component {
     this.setState({
       modal: !this.state.modal
     });
+  }
+
+  toggleres() {
+    this.setState({
+      modalres: !this.state.modalres
+    })
   }
 
 
@@ -107,8 +115,8 @@ export default class Navbar extends Component {
     </ul>
     
     <form class="form-inline my-2 my-lg-0">
-    <Button id="sign"  color="light"variant="success">SignIn</Button>{' '}
-    <Button id="siout"  color="dark"variant="success">SignUp</Button>{' '}
+    <Button id="sign"  color="light"variant="success" onClick={this.toggle}>SignIn</Button>{' '}
+    <Button id="siout"  color="dark"variant="success" onClick={this.toggleres}>SignUp</Button>{' '}
     
   
     
@@ -157,8 +165,8 @@ export default class Navbar extends Component {
         </Modal>
 
 
-        <Modal isOpen={this.state.modaladmin}>
-    <ModalHeader toggle={this.toggleadmin}><legend>Login</legend></ModalHeader>
+        <Modal isOpen={this.state.modalres}>
+        <ModalHeader toggle={this.toggleres}><legend>Register</legend></ModalHeader>
         
           <ModalBody>
           
